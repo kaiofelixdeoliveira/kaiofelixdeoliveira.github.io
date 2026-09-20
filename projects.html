@@ -1,103 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Portifólio</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Custom Google font-->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body class="d-flex flex-column h-100 bg-light">
-        <main class="flex-shrink-0">
-            <!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Portifólio</span></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Principal</a></li>
-                            <li class="nav-item"><a class="nav-link" href="resume.html">Resumo</a></li>
-                            <li class="nav-item"><a class="nav-link" href="projects.html">Projetos</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Contato</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- Projects Section-->
-            <section class="py-5">
-                <div class="container px-5 mb-5">
-                    <div class="text-center mb-5">
-                        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projetos</span></h1>
-                    </div>
-                    <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-11 col-xl-9 col-xxl-8">
-                            <!-- Project Card 1-->
-                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
-                                <div class="card-body p-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="p-5">
-                                            <h2 class="fw-bolder">Projeto de Contas</h2>
-                                            <p>Projeto para realizar as Operações de Consulta de Saldo e Transferência entre contas.</p>
-                                        </div>
-                                        <a href="https://github.com/kaiofelixdeoliveira/projeto-contas"><img class="img-fluid" src="https://images.pexels.com/photos/6372937/pexels-photo-6372937.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&dpr=1" alt="..." /></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Project Card 2-->
-                            <div class="card overflow-hidden shadow rounded-4 border-0">
-                                <div class="card-body p-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="p-5">
-                                            <h2 class="fw-bolder">Projeto de Mensageria</h2>
-                                            <p>Projeto arquitetural desenvolvido para a pós graduação</p>
-                                        </div>
-                                        <a href="https://github.com/kaiofelixdeoliveira/projeto-pos-graduacao"><img class="img-fluid" src="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=300&h=400&dpr=1" alt="..." /></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Call to action section-->
-            <section class="py-5 bg-gradient-primary-to-secondary text-white">
-                <div class="container px-5 my-5">
-                    <div class="text-center">
-                        <h2 class="display-4 fw-bolder mb-4">Vamos de turma!</h2>
-                        <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="contact.html">Contate me</a>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <!-- Footer-->
-        <footer class="bg-white py-4 mt-auto">
+<html lang="pt-BR" data-theme="light">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Projetos — Kaio Felix | Senior Software Engineer</title>
+    <meta name="description" content="Projetos de Kaio Felix: MetaHealth AI, arquitetura de mensageria distribuída e APIs bancárias em Java e Spring Boot." />
+    <meta name="author" content="Kaio Felix de Oliveira" />
+    <meta name="theme-color" content="#2b38f5" />
+    <link rel="canonical" href="https://kaiofelixdeoliveira.github.io/projects.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Projetos — Kaio Felix" />
+    <meta property="og:description" content="MetaHealth AI, mensageria distribuída e APIs bancárias em Java e Spring Boot." />
+    <meta property="og:url" content="https://kaiofelixdeoliveira.github.io/projects.html" />
+    <meta property="og:image" content="https://kaiofelixdeoliveira.github.io/assets/profile.png" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('kf-theme');
+                var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+            } catch (e) { /* ignora indisponibilidade do storage */ }
+        })();
+    </script>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <a class="kf-skip-link" href="#conteudo">Ir para o conteúdo</a>
+    <main class="flex-shrink-0" id="conteudo">
+        <!-- Navegação-->
+        <nav class="navbar navbar-expand-lg kf-nav py-3">
             <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0">Copyright &copy; Website 2023</div></div>
-                    <div class="col-auto">
-                        <a class="small" href="#!">Privacidade</a>
-                        <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Termos</a>
-                        <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Contato</a>
+                <a class="navbar-brand kf-brand" href="index.html">
+                    <span class="kf-brand-mark">KF</span>
+                    <span>Kaio Felix</span>
+                </a>
+                <div class="d-flex align-items-center gap-2 order-lg-last">
+                    <button class="kf-theme-toggle" type="button" data-theme-toggle aria-label="Alternar tema">
+                        <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+                        <i class="bi bi-sun-fill" aria-hidden="true"></i>
+                    </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto me-lg-3 mb-2 mb-lg-0 small fw-bolder">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                        <li class="nav-item"><a class="nav-link" href="resume.html">Experiência</a></li>
+                        <li class="nav-item"><a class="nav-link" href="projects.html">Projetos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Cabeçalho-->
+        <section class="kf-hero pb-4">
+            <div class="container px-5">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8 kf-reveal">
+                        <span class="kf-eyebrow">Portfólio</span>
+                        <h1 class="kf-title">Coisas que eu <span class="text-gradient d-inline">construí</span></h1>
+                        <p class="kf-subtitle mx-auto">
+                            Produtos próprios, projetos acadêmicos e experimentos que sustentam a forma como
+                            penso arquitetura no dia a dia.
+                        </p>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+        </section>
+
+        <!-- Projetos-->
+        <section class="pb-5">
+            <div class="container px-5">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <article class="kf-project kf-reveal">
+                            <div class="kf-project-cover"><i class="bi bi-heart-pulse-fill"></i></div>
+                            <div class="kf-project-body">
+                                <h3>MetaHealth AI</h3>
+                                <p>
+                                    Plataforma B2B2C para gestão de doenças metabólicas raras. Une aplicativo em
+                                    Flutter, backend na AWS e inteligência artificial aplicada ao acompanhamento
+                                    clínico dos pacientes.
+                                </p>
+                                <div class="kf-pills mt-3">
+                                    <span class="kf-pill">Flutter</span>
+                                    <span class="kf-pill">AWS</span>
+                                    <span class="kf-pill">Machine Learning</span>
+                                    <span class="kf-pill">Healthtech</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <article class="kf-project kf-reveal" data-delay="80">
+                            <div class="kf-project-cover"><i class="bi bi-diagram-3-fill"></i></div>
+                            <div class="kf-project-body">
+                                <h3>Projeto de Mensageria</h3>
+                                <p>
+                                    Projeto arquitetural desenvolvido durante o MBA na PUC Minas: comunicação
+                                    assíncrona entre serviços distribuídos, com foco em desacoplamento e
+                                    tolerância a falhas.
+                                </p>
+                                <div class="kf-pills mt-3">
+                                    <span class="kf-pill">Java</span>
+                                    <span class="kf-pill">Mensageria</span>
+                                    <span class="kf-pill">Sistemas Distribuídos</span>
+                                </div>
+                                <a class="kf-project-link" href="https://github.com/kaiofelixdeoliveira/projeto-pos-graduacao" target="_blank" rel="noopener">
+                                    Ver repositório <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <article class="kf-project kf-reveal" data-delay="160">
+                            <div class="kf-project-cover"><i class="bi bi-cash-coin"></i></div>
+                            <div class="kf-project-body">
+                                <h3>Projeto de Contas</h3>
+                                <p>
+                                    API para operações bancárias de consulta de saldo e transferência entre contas,
+                                    com regras de negócio isoladas do transporte e cobertura de testes.
+                                </p>
+                                <div class="kf-pills mt-3">
+                                    <span class="kf-pill">Java</span>
+                                    <span class="kf-pill">Spring Boot</span>
+                                    <span class="kf-pill">REST</span>
+                                    <span class="kf-pill">Testes</span>
+                                </div>
+                                <a class="kf-project-link" href="https://github.com/kaiofelixdeoliveira/projeto-contas" target="_blank" rel="noopener">
+                                    Ver repositório <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center mt-5">
+                    <div class="col-lg-10">
+                        <div class="kf-card text-center kf-reveal">
+                            <div class="kf-card-icon mx-auto"><i class="bi bi-github"></i></div>
+                            <h3>Tem mais no GitHub</h3>
+                            <p class="mb-4">
+                                Experimentos, estudos de arquitetura e códigos de apoio ficam por lá. Fique à
+                                vontade para explorar, abrir uma issue ou mandar um pull request.
+                            </p>
+                            <a class="kf-btn kf-btn-primary" href="https://github.com/kaiofelixdeoliveira" target="_blank" rel="noopener">
+                                <i class="bi bi-github"></i> @kaiofelixdeoliveira
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA-->
+        <section class="pb-5">
+            <div class="container px-5">
+                <div class="kf-cta kf-reveal">
+                    <h2 class="fw-bolder mb-3">Tem um projeto em mente?</h2>
+                    <p class="lead mb-4 mx-auto" style="max-width: 34rem">
+                        Se o desafio envolve escala, resiliência ou arquitetura distribuída, eu quero saber mais.
+                    </p>
+                    <a class="kf-btn kf-btn-ghost kf-btn-lg" href="contact.html"><i class="bi bi-send-fill"></i> Entrar em contato</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé-->
+    <footer class="kf-footer py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between gy-3 flex-column flex-sm-row">
+                <div class="col-auto text-center text-sm-start">
+                    <div class="small m-0">&copy; <span data-current-year>2026</span> Kaio Felix de Oliveira</div>
+                    <div class="small text-muted">Feito com Bootstrap e publicado no GitHub Pages.</div>
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex gap-2">
+                        <a class="kf-social" href="https://www.linkedin.com/in/kaio-felix-oliveira" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a class="kf-social" href="https://github.com/kaiofelixdeoliveira" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                        <a class="kf-social" href="mailto:kaio.felix.oliveira.mail@gmail.com" aria-label="E-mail"><i class="bi bi-envelope-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="kf-top" type="button" aria-label="Voltar ao topo"><i class="bi bi-arrow-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+
 </html>
