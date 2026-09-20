@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Currículo — Kaio Felix de Oliveira</title>
+    <meta name="description" content="Currículo de Kaio Felix de Oliveira, Senior Software Engineer em Java, Spring Boot e AWS." />
+    <meta name="author" content="Kaio Felix de Oliveira" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet" />
+    <style>
+        /* ------------------------------------------------------------------
+         * Currículo para impressão/PDF. Espelha os tokens de css/custom.css,
+         * mas sempre em tema claro: é gerado para papel A4.
+         * Origem do PDF em assets/cv.pdf — reimprima esta página para atualizar.
+         * ---------------------------------------------------------------- */
+        :root {
+            --accent: #2b38f5;
+            --accent-2: #e21e80;
+            --gradient: linear-gradient(135deg, #2b38f5 0%, #8b2df0 50%, #e21e80 100%);
+            --text: #0d1424;
+            --text-soft: #3c4761;
+            --muted: #6b7794;
+            --line: #e1e6f0;
+            --surface: #f5f7fc;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+            font-size: 9.5pt;
+            line-height: 1.5;
+            /* O espaço da Plus Jakarta Sans fica estreito nos corpos pequenos da impressão */
+            word-spacing: 0.06em;
+            color: var(--text);
+            background: #e9edf5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Cabeçalho */
+        .hero {
+            padding: 14mm 14mm 9mm;
+            background: var(--gradient);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.28) 1px, transparent 1px);
+            background-size: 16px 16px;
+            opacity: 0.4;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 9mm;
+        }
+
+        .avatar {
+            flex: 0 0 auto;
+            width: 30mm;
+            height: 30mm;
+            border-radius: 8mm;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1.5mm solid rgba(255, 255, 255, 0.5);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .name {
+            margin: 0;
+            font-size: 26pt;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+        }
+
+        .role {
+            margin: 2mm 0 3mm;
+            font-size: 11pt;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5mm 5mm;
+            font-size: 8.4pt;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        .contact span::before {
+            content: "";
+            display: inline-block;
+            width: 1.5mm;
+            height: 1.5mm;
+            margin-right: 1.6mm;
+            border-radius: 50%;
+            background: #fff;
+            vertical-align: 0.4mm;
+        }
+
+        /* Corpo em duas colunas */
+        .body {
+            display: flex;
+            gap: 8mm;
+            padding: 9mm 14mm 12mm;
+        }
+
+        .col-main {
+            flex: 1 1 62%;
+            min-width: 0;
+        }
+
+        .col-side {
+            flex: 0 0 34%;
+            min-width: 0;
+        }
+
+        h2 {
+            margin: 0 0 3.5mm;
+            font-size: 9.5pt;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            padding-bottom: 1.5mm;
+            border-bottom: 0.5mm solid var(--line);
+        }
+
+        section + section {
+            margin-top: 7mm;
+        }
+
+        .summary {
+            margin: 0;
+            color: var(--text-soft);
+            text-align: justify;
+        }
+
+        /* Experiência */
+        .job {
+            position: relative;
+            padding-left: 5mm;
+            padding-bottom: 5mm;
+            break-inside: avoid;
+        }
+
+        .job::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 1.6mm;
+            width: 2mm;
+            height: 2mm;
+            border-radius: 50%;
+            background: var(--gradient);
+        }
+
+        .job::after {
+            content: "";
+            position: absolute;
+            left: 0.8mm;
+            top: 4.6mm;
+            bottom: 0.5mm;
+            width: 0.4mm;
+            background: var(--line);
+        }
+
+        .job:last-child {
+            padding-bottom: 0;
+        }
+
+        .job:last-child::after {
+            display: none;
+        }
+
+        .job-title {
+            margin: 0;
+            font-size: 10.5pt;
+            font-weight: 800;
+        }
+
+        .job-meta {
+            margin: 0.5mm 0 2mm;
+            font-size: 8.6pt;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .job-meta .company {
+            color: var(--accent-2);
+        }
+
+        .job ul {
+            margin: 0 0 2mm;
+            padding-left: 4mm;
+        }
+
+        .job li {
+            margin-bottom: 1mm;
+            color: var(--text-soft);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2mm;
+        }
+
+        .tag {
+            padding: 0.6mm 2mm;
+            border: 0.3mm solid var(--line);
+            border-radius: 10mm;
+            background: var(--surface);
+            font-size: 7.6pt;
+            font-weight: 600;
+            color: var(--text-soft);
+        }
+
+        /* Coluna lateral */
+        .skill-group {
+            margin-bottom: 4mm;
+            break-inside: avoid;
+        }
+
+        .skill-group h3 {
+            margin: 0 0 1.5mm;
+            font-size: 8.6pt;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .entry {
+            margin-bottom: 3.5mm;
+            break-inside: avoid;
+        }
+
+        .entry-title {
+            font-size: 9pt;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .entry-sub {
+            font-size: 8.4pt;
+            color: var(--text-soft);
+        }
+
+        .entry-date {
+            font-size: 7.8pt;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .cert {
+            display: flex;
+            gap: 2mm;
+            margin-bottom: 2.5mm;
+            break-inside: avoid;
+        }
+
+        .cert::before {
+            content: "";
+            flex: 0 0 auto;
+            width: 1.6mm;
+            height: 1.6mm;
+            margin-top: 1.6mm;
+            border-radius: 50%;
+            background: var(--accent-2);
+        }
+
+        .cert-name {
+            font-size: 8.6pt;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .cert-sub {
+            font-size: 8pt;
+            color: var(--muted);
+        }
+
+        .foot {
+            position: absolute;
+            left: 14mm;
+            right: 14mm;
+            bottom: 7mm;
+            display: flex;
+            justify-content: space-between;
+            font-size: 7.6pt;
+            color: var(--muted);
+            border-top: 0.3mm solid var(--line);
+            padding-top: 2mm;
+        }
+
+        @media screen {
+            .page {
+                box-shadow: 0 10px 40px rgba(13, 20, 36, 0.18);
+                margin-block: 8mm;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Página 1 -->
+    <div class="page">
+        <header class="hero">
+            <div class="hero-inner">
+                <div class="avatar"><img src="assets/profile.png" alt="Kaio Felix de Oliveira" /></div>
+                <div>
+                    <h1 class="name">Kaio Felix de Oliveira</h1>
+                    <p class="role">Senior Software Engineer · Java, Spring Boot &amp; AWS</p>
+                    <div class="contact">
+                        <span>Grande São Paulo, Brasil</span>
+                        <span>kaio.felix.oliveira.mail@gmail.com</span>
+                        <span>linkedin.com/in/kaio-felix-oliveira</span>
+                        <span>github.com/kaiofelixdeoliveira</span>
+                        <span>kaiofelixdeoliveira.github.io</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="body">
+            <div class="col-main">
+                <section>
+                    <h2>Resumo</h2>
+                    <p class="summary">
+                        Engenheiro de software sênior com mais de 10 anos em sistemas financeiros de missão crítica.
+                        No Banco Itaú, atuo na arquitetura e no desenvolvimento de plataformas de crédito consignado
+                        INSS — alto volume transacional, integração com core bancário legado e requisitos rígidos de
+                        disponibilidade e compliance. Microsserviços em Java e Spring Boot sobre AWS, arquitetura
+                        orientada a eventos com Kafka, observabilidade end-to-end e liderança técnica.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Experiência profissional</h2>
+
+                    <div class="job">
+                        <p class="job-title">Software Engineer · Backend Developer</p>
+                        <p class="job-meta"><span class="company">Banco Itaú</span> · São Paulo, Brasil · jun 2024 — atual</p>
+                        <ul>
+                            <li>Microsserviços em Java e Spring Boot sobre AWS, com foco em escalabilidade e resiliência.</li>
+                            <li>Arquitetura orientada a eventos com mensageria assíncrona para desacoplar integrações entre domínios.</li>
+                            <li>Observabilidade end-to-end com Splunk, Prometheus, Grafana e Jaeger, reduzindo o tempo de diagnóstico em incidentes.</li>
+                            <li>Containerização com Docker, entregas via CI/CD, revisões de código e design de APIs REST.</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">AWS</span><span class="tag">Kafka</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">CI/CD</span>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <p class="job-title">Senior Technical Lead</p>
+                        <p class="job-meta"><span class="company">Banco Itaú</span> · São Paulo, Brasil · jan 2026 — mar 2026</p>
+                        <ul>
+                            <li>Liderança técnica das plataformas de crédito consignado INSS.</li>
+                            <li>Blueprints de arquitetura escalável, segura e resiliente para processamento de empréstimos.</li>
+                            <li>Decisões técnicas balanceando time-to-market e manutenibilidade; padrões de código e TDD.</li>
+                            <li>Integrações complexas entre microsserviços e sistemas legados de core bancário.</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">Microsserviços</span><span class="tag">Event-Driven</span><span class="tag">System Design</span><span class="tag">TDD</span><span class="tag">Liderança Técnica</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="col-side">
+                <section>
+                    <h2>Competências</h2>
+                    <div class="skill-group">
+                        <h3>Backend &amp; Arquitetura</h3>
+                        <div class="tags">
+                            <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Spring Cloud</span><span class="tag">APIs REST</span><span class="tag">SOAP</span><span class="tag">Microsserviços</span><span class="tag">Event-Driven</span><span class="tag">Apache Kafka</span><span class="tag">Sistemas Distribuídos</span><span class="tag">Clean Architecture</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Cloud &amp; DevOps</h3>
+                        <div class="tags">
+                            <span class="tag">AWS Lambda</span><span class="tag">S3</span><span class="tag">DynamoDB</span><span class="tag">API Gateway</span><span class="tag">Cognito</span><span class="tag">ECS</span><span class="tag">Azure</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">IaC</span><span class="tag">CI/CD</span><span class="tag">Jenkins</span><span class="tag">Linux</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Confiabilidade &amp; Qualidade</h3>
+                        <div class="tags">
+                            <span class="tag">Splunk</span><span class="tag">Datadog</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Jaeger</span><span class="tag">Tracing Distribuído</span><span class="tag">SonarQube</span><span class="tag">TDD</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Dados, IA &amp; Front-end</h3>
+                        <div class="tags">
+                            <span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">Computer Vision</span><span class="tag">LLMs</span><span class="tag">Big Data</span><span class="tag">Angular</span><span class="tag">Flutter</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Certificações</h2>
+                    <div class="cert">
+                        <div>
+                            <div class="cert-name">AWS Knowledge: Architecting</div>
+                        </div>
+                    </div>
+                    <div class="cert">
+                        <div>
+                            <div class="cert-name">AWS Cloud Quest: Serverless Developer</div>
+                        </div>
+                    </div>
+                    <div class="cert">
+                        <div>
+                            <div class="cert-name">Cloud Native Security Conference</div>
+                            <div class="cert-sub">DevSecOps</div>
+                        </div>
+                    </div>
+                    <div class="cert">
+                        <div>
+                            <div class="cert-name">Hybrid Cloud Conference</div>
+                            <div class="cert-sub">Microservices Architect</div>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+
+        <div class="foot">
+            <span>Kaio Felix de Oliveira · Senior Software Engineer</span>
+            <span>Página 1 de 2</span>
+        </div>
+    </div>
+
+    <!-- Página 2 -->
+    <div class="page">
+        <div class="body" style="padding-top: 14mm">
+            <div class="col-main">
+                <section>
+                    <h2>Experiência profissional (continuação)</h2>
+
+                    <div class="job">
+                        <p class="job-title">Software Engineer</p>
+                        <p class="job-meta"><span class="company">Banco Itaú</span> · São Paulo, Brasil · jan 2022 — jun 2024</p>
+                        <ul>
+                            <li>Serviços backend para produtos de crédito de alto volume, em Java e Spring Boot sobre AWS.</li>
+                            <li>Qualidade de código com SonarQube, testes automatizados e entregas contínuas.</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">AWS</span><span class="tag">SonarQube</span>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <p class="job-title">Software Programmer · Azure Developer Associate</p>
+                        <p class="job-meta"><span class="company">IBM</span> · Brasil · ago 2020 — jan 2022</p>
+                        <ul>
+                            <li>Features em Angular e Java para portal corporativo de mensageria.</li>
+                            <li>Integração de aplicações Java com serviços de big data e cloud (Azure).</li>
+                            <li>Testes unitários e gates de qualidade com SonarQube, em ambiente ágil Scrum.</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">Java</span><span class="tag">Angular</span><span class="tag">Azure</span><span class="tag">SonarQube</span><span class="tag">Scrum</span>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <p class="job-title">Programmer</p>
+                        <p class="job-meta"><span class="company">EGInfo Produtos &amp; Serviços</span> · Brasil · ago 2018 — set 2020</p>
+                        <ul>
+                            <li>APIs REST e SOAP em Java com Spring Boot e sistemas web em Angular para clientes corporativos.</li>
+                            <li>Integração contínua com Jenkins e scripts de provisionamento em Linux.</li>
+                            <li>Projetos mobile em Flutter.</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Angular</span><span class="tag">Jenkins</span><span class="tag">Flutter</span>
+                        </div>
+                    </div>
+
+                    <div class="job">
+                        <p class="job-title">Monitoring Analyst (NOC)</p>
+                        <p class="job-meta"><span class="company">Fast Solutions</span> · Brasil · ago 2013 — ago 2018</p>
+                        <ul>
+                            <li>Registro e acompanhamento de incidentes em produção, com validação de ambientes via Linux.</li>
+                            <li>Suporte a sistemas e infraestrutura de rede em ambiente alinhado ao padrão PCI.</li>
+                        </ul>
+                        <div class="tags">
+                            <span class="tag">Linux</span><span class="tag">Infraestrutura</span><span class="tag">Redes</span><span class="tag">PCI</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Projetos</h2>
+                    <div class="job">
+                        <p class="job-title">MetaHealth AI</p>
+                        <p class="job-meta">Plataforma B2B2C para gestão de doenças metabólicas raras · Flutter, AWS e IA aplicada</p>
+                    </div>
+                    <div class="job">
+                        <p class="job-title">Projeto de Mensageria</p>
+                        <p class="job-meta">Comunicação assíncrona entre serviços distribuídos · MBA PUC Minas · github.com/kaiofelixdeoliveira/projeto-pos-graduacao</p>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="col-side">
+                <section>
+                    <h2>Formação</h2>
+                    <div class="entry">
+                        <div class="entry-date">mar 2026 — mar 2027 · em andamento</div>
+                        <div class="entry-title">FIAP</div>
+                        <div class="entry-sub">Pós-graduação em Data Science &amp; Inteligência Artificial</div>
+                    </div>
+                    <div class="entry">
+                        <div class="entry-date">set 2021 — jan 2023</div>
+                        <div class="entry-title">PUC Minas</div>
+                        <div class="entry-sub">MBA em Tecnologia da Informação · Arquitetura de software distribuído</div>
+                    </div>
+                    <div class="entry">
+                        <div class="entry-date">mar 2023 — abr 2023</div>
+                        <div class="entry-title">Universidade Federal do ABC</div>
+                        <div class="entry-sub">Formação de Tutores para Educação a Distância</div>
+                    </div>
+                    <div class="entry">
+                        <div class="entry-date">2013 — 2017</div>
+                        <div class="entry-title">Faculdade Eniac</div>
+                        <div class="entry-sub">Bacharelado em Tecnologia da Informação</div>
+                    </div>
+                    <div class="entry">
+                        <div class="entry-date">2011 — 2013</div>
+                        <div class="entry-title">IFSP</div>
+                        <div class="entry-sub">Técnico em Informática</div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Interesses</h2>
+                    <p class="entry-sub" style="margin: 0">
+                        Engenharia de plataforma, fintech, healthtech e IA aplicada a produtos de alto impacto.
+                    </p>
+                </section>
+            </aside>
+        </div>
+
+        <div class="foot">
+            <span>Kaio Felix de Oliveira · Senior Software Engineer</span>
+            <span>Página 2 de 2</span>
+        </div>
+    </div>
+</body>
+
+</html>

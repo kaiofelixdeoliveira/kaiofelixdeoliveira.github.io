@@ -1,0 +1,1203 @@
+/*!
+ * Kaio Felix — Camada de personalização do portfólio
+ * Carregada DEPOIS de css/styles.css (Bootstrap 5.2.3 + Start Bootstrap Personal).
+ * Tudo aqui é tematizável via [data-theme="light|dark"] no elemento <html>.
+ */
+
+/* ==========================================================================
+   1. Tokens de design
+   ========================================================================== */
+:root {
+    --kf-accent: #2b38f5;
+    --kf-accent-soft: #eef0ff;
+    --kf-accent-2: #e21e80;
+    --kf-gradient: linear-gradient(135deg, #2b38f5 0%, #8b2df0 50%, #e21e80 100%);
+
+    --kf-bg: #ffffff;
+    --kf-bg-alt: #f5f7fc;
+    --kf-surface: #ffffff;
+    --kf-surface-2: #f2f5fb;
+    --kf-border: #e4e9f2;
+    --kf-text: #0d1424;
+    --kf-text-soft: #4a5568;
+    --kf-text-muted: #6b7794;
+
+    --kf-shadow-sm: 0 2px 8px rgba(13, 20, 36, 0.06);
+    --kf-shadow: 0 12px 32px -12px rgba(13, 20, 36, 0.18);
+    --kf-shadow-lg: 0 28px 60px -24px rgba(13, 20, 36, 0.28);
+
+    --kf-radius: 1.25rem;
+    --kf-radius-sm: 0.75rem;
+    --kf-nav-h: 4.5rem;
+    --kf-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="dark"] {
+    --kf-accent: #7c8cff;
+    --kf-accent-soft: rgba(124, 140, 255, 0.14);
+    --kf-accent-2: #ff5fa8;
+    --kf-gradient: linear-gradient(135deg, #6b7cff 0%, #a768ff 50%, #ff5fa8 100%);
+
+    --kf-bg: #0a0e1a;
+    --kf-bg-alt: #0f1524;
+    --kf-surface: #121a2b;
+    --kf-surface-2: #182135;
+    --kf-border: #24304a;
+    --kf-text: #e8edf9;
+    --kf-text-soft: #b9c4da;
+    --kf-text-muted: #8d9ab5;
+
+    --kf-shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.4);
+    --kf-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.7);
+    --kf-shadow-lg: 0 32px 70px -28px rgba(0, 0, 0, 0.85);
+    color-scheme: dark;
+}
+
+/* ==========================================================================
+   2. Base
+   ========================================================================== */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--kf-nav-h) + 1rem);
+}
+
+body {
+    background-color: var(--kf-bg);
+    color: var(--kf-text);
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.35s var(--kf-ease), color 0.35s var(--kf-ease);
+    overflow-x: hidden;
+}
+
+::selection {
+    background: var(--kf-accent);
+    color: #fff;
+}
+
+/* Sobrepõe as superfícies utilitárias do Bootstrap para que o tema escuro funcione */
+.bg-white,
+.bg-light {
+    background-color: var(--kf-bg) !important;
+}
+
+.kf-section-alt {
+    background-color: var(--kf-bg-alt) !important;
+}
+
+.text-muted {
+    color: var(--kf-text-muted) !important;
+}
+
+.card {
+    background-color: var(--kf-surface);
+    border-color: var(--kf-border);
+    color: var(--kf-text);
+}
+
+hr {
+    border-color: var(--kf-border);
+    opacity: 1;
+}
+
+.text-gradient {
+    background: var(--kf-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.bg-gradient-primary-to-secondary {
+    background: var(--kf-gradient) !important;
+}
+
+.kf-mono {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ==========================================================================
+   3. Navegação
+   ========================================================================== */
+.kf-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    min-height: var(--kf-nav-h);
+    background-color: var(--kf-bg); /* fallback para navegadores sem color-mix */
+    background-color: color-mix(in srgb, var(--kf-bg) 82%, transparent);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s var(--kf-ease), box-shadow 0.3s var(--kf-ease),
+        background-color 0.3s var(--kf-ease);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+    .kf-nav {
+        background-color: var(--kf-bg);
+    }
+}
+
+.kf-nav.is-scrolled {
+    border-bottom-color: var(--kf-border);
+    box-shadow: var(--kf-shadow-sm);
+}
+
+.kf-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--kf-text) !important;
+}
+
+.kf-brand-mark {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.7rem;
+    background: var(--kf-gradient);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 800;
+    box-shadow: var(--kf-shadow-sm);
+}
+
+.kf-nav .nav-link {
+    position: relative;
+    color: var(--kf-text-soft) !important;
+    padding-inline: 0.85rem !important;
+    transition: color 0.25s var(--kf-ease);
+}
+
+.kf-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0.85rem;
+    right: 0.85rem;
+    bottom: 0.25rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--kf-gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--kf-ease);
+}
+
+.kf-nav .nav-link:hover,
+.kf-nav .nav-link.active {
+    color: var(--kf-text) !important;
+}
+
+.kf-nav .nav-link:hover::after,
+.kf-nav .nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.navbar-toggler {
+    border-color: var(--kf-border);
+    color: var(--kf-text);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem var(--kf-accent-soft);
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+    filter: invert(1) brightness(1.8);
+}
+
+/* Botão de tema */
+.kf-theme-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--kf-border);
+    background: var(--kf-surface-2);
+    color: var(--kf-text);
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: transform 0.3s var(--kf-ease), background-color 0.3s var(--kf-ease),
+        border-color 0.3s var(--kf-ease);
+}
+
+.kf-theme-toggle:hover {
+    transform: rotate(-18deg) scale(1.08);
+    border-color: var(--kf-accent);
+    color: var(--kf-accent);
+}
+
+.kf-theme-toggle .bi-sun-fill {
+    display: none;
+}
+
+[data-theme="dark"] .kf-theme-toggle .bi-sun-fill {
+    display: block;
+}
+
+[data-theme="dark"] .kf-theme-toggle .bi-moon-stars-fill {
+    display: none;
+}
+
+/* ==========================================================================
+   4. Hero
+   ========================================================================== */
+.kf-hero {
+    position: relative;
+    padding: clamp(3rem, 8vw, 6rem) 0 clamp(3rem, 7vw, 5.5rem);
+    overflow: hidden;
+}
+
+.kf-hero::before,
+.kf-hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+    /* Desvanece antes do fim da seção para o overflow não cortar o brilho */
+    -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 80%);
+    mask-image: linear-gradient(to bottom, #000 30%, transparent 80%);
+}
+
+/* O falloff radial termina transparente, então a borda da seção não corta o brilho */
+.kf-hero::before {
+    width: 34rem;
+    height: 34rem;
+    top: -13rem;
+    left: -9rem;
+    background: radial-gradient(circle, var(--kf-accent) 0%, transparent 68%);
+    animation: kf-float 16s ease-in-out infinite;
+}
+
+.kf-hero::after {
+    width: 28rem;
+    height: 28rem;
+    top: -7rem;
+    right: -9rem;
+    background: radial-gradient(circle, var(--kf-accent-2) 0%, transparent 68%);
+    animation: kf-float 20s ease-in-out infinite reverse;
+}
+
+[data-theme="dark"] .kf-hero::before,
+[data-theme="dark"] .kf-hero::after {
+    opacity: 0.26;
+}
+
+/* Em telas pequenas os brilhos cobririam a tela inteira e lavariam o fundo */
+@media (max-width: 991.98px) {
+    .kf-hero::before {
+        width: 20rem;
+        height: 20rem;
+        top: -9rem;
+        left: -7rem;
+        opacity: 0.35;
+    }
+
+    .kf-hero::after {
+        width: 17rem;
+        height: 17rem;
+        top: -5rem;
+        right: -7rem;
+        opacity: 0.32;
+    }
+
+    [data-theme="dark"] .kf-hero::before,
+    [data-theme="dark"] .kf-hero::after {
+        opacity: 0.3;
+    }
+}
+
+.kf-hero > .container {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes kf-float {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(2rem, 2.5rem, 0) scale(1.12); }
+}
+
+.kf-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.4rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid var(--kf-border);
+    background: var(--kf-surface);
+    box-shadow: var(--kf-shadow-sm);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--kf-text-soft);
+}
+
+.kf-status-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55);
+    animation: kf-pulse 2.2s infinite;
+}
+
+@keyframes kf-pulse {
+    70% { box-shadow: 0 0 0 0.6rem rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.kf-hero-title {
+    font-size: clamp(2.5rem, 6.4vw, 4.5rem);
+    text-wrap: balance;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    margin-bottom: 0.75rem;
+}
+
+.kf-hero-role {
+    font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+    font-weight: 600;
+    color: var(--kf-text-soft);
+    min-height: 2.2em;
+}
+
+.kf-typed {
+    color: var(--kf-accent);
+    font-weight: 700;
+}
+
+.kf-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1.05em;
+    margin-left: 2px;
+    vertical-align: -0.15em;
+    background: var(--kf-accent-2);
+    animation: kf-blink 1s steps(2, start) infinite;
+}
+
+@keyframes kf-blink {
+    to { visibility: hidden; }
+}
+
+.kf-lead {
+    max-width: 38rem;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--kf-text-soft);
+}
+
+/* Foto */
+.kf-photo {
+    position: relative;
+    width: min(22rem, 78vw);
+    aspect-ratio: 1;
+    margin-inline: auto;
+}
+
+.kf-photo-ring {
+    position: absolute;
+    inset: -0.6rem;
+    border-radius: 2.25rem;
+    background: var(--kf-gradient);
+    opacity: 0.9;
+}
+
+/* Brilho difuso por trás da moldura */
+.kf-photo::after {
+    content: "";
+    position: absolute;
+    inset: -1.5rem;
+    z-index: -1;
+    border-radius: 3rem;
+    background: var(--kf-gradient);
+    filter: blur(36px);
+    opacity: 0.4;
+    animation: kf-glow 7s ease-in-out infinite;
+}
+
+[data-theme="dark"] .kf-photo::after {
+    opacity: 0.55;
+}
+
+@keyframes kf-glow {
+    0%, 100% { opacity: 0.32; transform: scale(0.97); }
+    50% { opacity: 0.5; transform: scale(1.04); }
+}
+
+.kf-photo-inner {
+    position: absolute;
+    inset: 0;
+    border-radius: 1.9rem;
+    overflow: hidden;
+    background: var(--kf-surface-2);
+    box-shadow: var(--kf-shadow-lg);
+}
+
+.kf-photo-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+.kf-photo-badge {
+    position: absolute;
+    right: -1rem;
+    bottom: 1.5rem;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    border-radius: 1rem;
+    background: var(--kf-surface);
+    border: 1px solid var(--kf-border);
+    box-shadow: var(--kf-shadow);
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.2;
+    animation: kf-bob 5s ease-in-out infinite;
+}
+
+.kf-photo-badge i {
+    font-size: 1.35rem;
+    background: var(--kf-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.kf-photo-badge small {
+    display: block;
+    font-weight: 500;
+    color: var(--kf-text-muted);
+}
+
+@keyframes kf-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-0.55rem); }
+}
+
+@media (max-width: 575.98px) {
+    .kf-photo-badge {
+        right: 0.25rem;
+        bottom: 0.75rem;
+        padding: 0.55rem 0.8rem;
+        font-size: 0.72rem;
+    }
+
+    .kf-photo-badge i {
+        font-size: 1.1rem;
+    }
+}
+
+/* ==========================================================================
+   5. Botões
+   ========================================================================== */
+.kf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.9rem 1.7rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.25s var(--kf-ease), box-shadow 0.25s var(--kf-ease),
+        background-color 0.25s var(--kf-ease), color 0.25s var(--kf-ease),
+        border-color 0.25s var(--kf-ease);
+}
+
+.kf-btn-primary {
+    background: var(--kf-gradient);
+    background-size: 200% 200%;
+    color: #fff;
+    box-shadow: 0 12px 26px -12px var(--kf-accent);
+}
+
+.kf-btn-primary:hover {
+    color: #fff;
+    background-position: 100% 0;
+    transform: translateY(-3px);
+    box-shadow: 0 18px 34px -12px var(--kf-accent);
+}
+
+.kf-btn-ghost {
+    background: var(--kf-surface);
+    border-color: var(--kf-border);
+    color: var(--kf-text);
+}
+
+.kf-btn-ghost:hover {
+    color: var(--kf-accent);
+    border-color: var(--kf-accent);
+    transform: translateY(-3px);
+    box-shadow: var(--kf-shadow);
+}
+
+.kf-btn-lg {
+    padding: 1rem 2.1rem;
+    font-size: 1rem;
+}
+
+/* ==========================================================================
+   6. Estatísticas
+   ========================================================================== */
+.kf-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    max-width: 34rem;
+}
+
+@media (min-width: 576px) {
+    .kf-stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+.kf-stat {
+    padding: 1rem 0.75rem;
+    border-radius: var(--kf-radius-sm);
+    border: 1px solid var(--kf-border);
+    background: var(--kf-surface);
+    text-align: center;
+    transition: transform 0.3s var(--kf-ease), border-color 0.3s var(--kf-ease);
+}
+
+.kf-stat:hover {
+    transform: translateY(-4px);
+    border-color: var(--kf-accent);
+}
+
+.kf-stat-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1;
+    background: var(--kf-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.kf-stat-label {
+    margin-top: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--kf-text-muted);
+}
+
+/* ==========================================================================
+   7. Marquee de stack
+   ========================================================================== */
+.kf-marquee {
+    position: relative;
+    overflow: hidden;
+    padding: 1.1rem 0;
+    border-block: 1px solid var(--kf-border);
+    background: var(--kf-bg-alt);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.kf-marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 2.5rem;
+    animation: kf-scroll 34s linear infinite;
+}
+
+.kf-marquee:hover .kf-marquee-track {
+    animation-play-state: paused;
+}
+
+.kf-marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--kf-text-muted);
+    white-space: nowrap;
+}
+
+.kf-marquee-item i {
+    font-size: 1.1rem;
+    color: var(--kf-accent);
+}
+
+@keyframes kf-scroll {
+    to { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   8. Seções e cards
+   ========================================================================== */
+.kf-section {
+    padding: clamp(3.5rem, 8vw, 6rem) 0;
+}
+
+.kf-eyebrow {
+    display: inline-block;
+    margin-bottom: 0.85rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: 999px;
+    background: var(--kf-accent-soft);
+    color: var(--kf-accent);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.kf-title {
+    font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.85rem;
+}
+
+.kf-subtitle {
+    max-width: 44rem;
+    color: var(--kf-text-soft);
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+.kf-card {
+    position: relative;
+    height: 100%;
+    padding: 1.9rem;
+    border-radius: var(--kf-radius);
+    border: 1px solid var(--kf-border);
+    background: var(--kf-surface);
+    overflow: hidden;
+    transition: transform 0.35s var(--kf-ease), box-shadow 0.35s var(--kf-ease),
+        border-color 0.35s var(--kf-ease);
+}
+
+.kf-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--kf-gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--kf-ease);
+}
+
+.kf-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--kf-shadow);
+    border-color: color-mix(in srgb, var(--kf-accent) 40%, var(--kf-border));
+}
+
+.kf-card:hover::before {
+    transform: scaleX(1);
+}
+
+.kf-card-icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1.1rem;
+    border-radius: 0.9rem;
+    background: var(--kf-gradient);
+    color: #fff;
+    font-size: 1.35rem;
+    box-shadow: var(--kf-shadow-sm);
+}
+
+.kf-card h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+}
+
+.kf-card p {
+    color: var(--kf-text-soft);
+    font-size: 0.94rem;
+    line-height: 1.65;
+    margin-bottom: 0;
+}
+
+/* Pílulas de tecnologia */
+.kf-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.kf-pill {
+    padding: 0.32rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--kf-border);
+    background: var(--kf-surface-2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--kf-text-soft);
+    white-space: nowrap;
+    transition: color 0.25s var(--kf-ease), border-color 0.25s var(--kf-ease),
+        transform 0.25s var(--kf-ease);
+}
+
+.kf-pill:hover {
+    color: var(--kf-accent);
+    border-color: var(--kf-accent);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   9. Linha do tempo
+   ========================================================================== */
+.kf-timeline {
+    position: relative;
+    padding-left: 2.25rem;
+}
+
+.kf-timeline::before {
+    content: "";
+    position: absolute;
+    left: 0.55rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: linear-gradient(180deg, var(--kf-accent) 0%, var(--kf-accent-2) 75%, transparent 100%);
+}
+
+.kf-tl-item {
+    position: relative;
+    margin-bottom: 1.75rem;
+}
+
+.kf-tl-item:last-child {
+    margin-bottom: 0;
+}
+
+.kf-tl-dot {
+    position: absolute;
+    left: -2.25rem;
+    top: 1.9rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: var(--kf-bg);
+    border: 3px solid var(--kf-accent);
+    box-shadow: 0 0 0 4px var(--kf-accent-soft);
+}
+
+.kf-tl-item.is-current .kf-tl-dot {
+    background: var(--kf-gradient);
+    border-color: transparent;
+    animation: kf-pulse-ring 2.4s infinite;
+}
+
+@keyframes kf-pulse-ring {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--kf-accent) 45%, transparent); }
+    70% { box-shadow: 0 0 0 0.8rem transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.kf-tl-card {
+    padding: 1.6rem 1.75rem;
+    border-radius: var(--kf-radius);
+    border: 1px solid var(--kf-border);
+    background: var(--kf-surface);
+    transition: transform 0.3s var(--kf-ease), box-shadow 0.3s var(--kf-ease),
+        border-color 0.3s var(--kf-ease);
+}
+
+.kf-tl-card:hover {
+    transform: translateX(5px);
+    box-shadow: var(--kf-shadow);
+    border-color: color-mix(in srgb, var(--kf-accent) 40%, var(--kf-border));
+}
+
+.kf-tl-period {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--kf-accent);
+}
+
+.kf-tl-role {
+    font-size: 1.18rem;
+    font-weight: 800;
+    margin: 0.4rem 0 0.15rem;
+}
+
+.kf-tl-company {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--kf-text-muted);
+    margin-bottom: 0.9rem;
+}
+
+.kf-tl-list {
+    margin: 0 0 1.1rem;
+    padding: 0;
+    list-style: none;
+}
+
+.kf-tl-list li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    color: var(--kf-text-soft);
+}
+
+.kf-tl-list li::before {
+    content: "\F270";
+    font-family: "bootstrap-icons";
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    font-size: 0.7rem;
+    color: var(--kf-accent);
+}
+
+/* ==========================================================================
+   10. Projetos
+   ========================================================================== */
+.kf-project {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: var(--kf-radius);
+    border: 1px solid var(--kf-border);
+    background: var(--kf-surface);
+    overflow: hidden;
+    transition: transform 0.35s var(--kf-ease), box-shadow 0.35s var(--kf-ease),
+        border-color 0.35s var(--kf-ease);
+}
+
+.kf-project:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--kf-shadow-lg);
+    border-color: color-mix(in srgb, var(--kf-accent) 45%, var(--kf-border));
+}
+
+.kf-project-cover {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 9.5rem;
+    background: var(--kf-gradient);
+    color: #fff;
+    font-size: 3rem;
+    overflow: hidden;
+}
+
+.kf-project-cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+    background-size: 14px 14px;
+    opacity: 0.4;
+}
+
+.kf-project-cover i {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.4s var(--kf-ease);
+}
+
+.kf-project:hover .kf-project-cover i {
+    transform: scale(1.15) rotate(-6deg);
+}
+
+.kf-project-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.6rem;
+}
+
+.kf-project-body h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 0.55rem;
+}
+
+.kf-project-body p {
+    flex: 1;
+    font-size: 0.93rem;
+    line-height: 1.65;
+    color: var(--kf-text-soft);
+}
+
+.kf-project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.1rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--kf-accent);
+    text-decoration: none;
+}
+
+.kf-project-link i {
+    transition: transform 0.25s var(--kf-ease);
+}
+
+.kf-project-link:hover i {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   11. Contato
+   ========================================================================== */
+.kf-contact-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    padding: 1.4rem;
+    border-radius: var(--kf-radius);
+    border: 1px solid var(--kf-border);
+    background: var(--kf-surface);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s var(--kf-ease), box-shadow 0.3s var(--kf-ease),
+        border-color 0.3s var(--kf-ease);
+}
+
+.kf-contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--kf-shadow);
+    border-color: var(--kf-accent);
+    color: inherit;
+}
+
+.kf-contact-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 0.85rem;
+    background: var(--kf-gradient);
+    color: #fff;
+    font-size: 1.25rem;
+}
+
+.kf-contact-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--kf-text-muted);
+}
+
+.kf-contact-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.kf-contact-value--sm {
+    font-size: 0.8rem;
+    letter-spacing: -0.01em;
+}
+
+.form-control,
+.form-control:focus {
+    background-color: var(--kf-surface-2);
+    border-color: var(--kf-border);
+    color: var(--kf-text);
+}
+
+.form-control:focus {
+    border-color: var(--kf-accent);
+    box-shadow: 0 0 0 0.25rem var(--kf-accent-soft);
+}
+
+.form-control::placeholder {
+    color: var(--kf-text-muted);
+}
+
+.form-floating > label {
+    color: var(--kf-text-muted);
+}
+
+[data-theme="dark"] .form-floating > .form-control:focus ~ label,
+[data-theme="dark"] .form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: var(--kf-text-muted);
+}
+
+[data-theme="dark"] .form-floating > .form-control:focus ~ label::after,
+[data-theme="dark"] .form-floating > .form-control:not(:placeholder-shown) ~ label::after {
+    background-color: var(--kf-surface-2) !important;
+}
+
+/* ==========================================================================
+   12. CTA e rodapé
+   ========================================================================== */
+.kf-cta {
+    position: relative;
+    border-radius: var(--kf-radius);
+    padding: clamp(2.5rem, 6vw, 4rem);
+    background: var(--kf-gradient);
+    color: #fff;
+    overflow: hidden;
+    text-align: center;
+}
+
+.kf-cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+    background-size: 18px 18px;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.kf-cta > * {
+    position: relative;
+    z-index: 1;
+}
+
+.kf-footer {
+    border-top: 1px solid var(--kf-border);
+    background: var(--kf-bg-alt) !important;
+    color: var(--kf-text-soft);
+}
+
+.kf-social {
+    display: inline-grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    border: 1px solid var(--kf-border);
+    background: var(--kf-surface);
+    color: var(--kf-text-soft);
+    font-size: 1.15rem;
+    text-decoration: none;
+    transition: transform 0.3s var(--kf-ease), color 0.3s var(--kf-ease),
+        border-color 0.3s var(--kf-ease), box-shadow 0.3s var(--kf-ease);
+}
+
+.kf-social:hover {
+    transform: translateY(-4px);
+    color: #fff;
+    border-color: transparent;
+    background: var(--kf-gradient);
+    box-shadow: var(--kf-shadow);
+}
+
+/* Voltar ao topo */
+.kf-top {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 1040;
+    display: grid;
+    place-items: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    border: none;
+    border-radius: 50%;
+    background: var(--kf-gradient);
+    color: #fff;
+    font-size: 1.15rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(1rem);
+    box-shadow: var(--kf-shadow);
+    transition: all 0.3s var(--kf-ease);
+}
+
+.kf-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.kf-top:hover {
+    transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   13. Animações de entrada
+   ========================================================================== */
+.kf-reveal {
+    opacity: 0;
+    transform: translateY(1.75rem);
+    transition: opacity 0.7s var(--kf-ease), transform 0.7s var(--kf-ease);
+}
+
+.kf-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    .kf-reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Acessibilidade: foco visível consistente */
+a:focus-visible,
+button:focus-visible,
+.form-control:focus-visible {
+    outline: 2px solid var(--kf-accent);
+    outline-offset: 3px;
+}
+
+.kf-skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    z-index: 2000;
+    padding: 0.75rem 1.25rem;
+    background: var(--kf-accent);
+    color: #fff;
+    border-radius: 0 0 0.5rem 0;
+    font-weight: 700;
+}
+
+.kf-skip-link:focus {
+    left: 0;
+}
